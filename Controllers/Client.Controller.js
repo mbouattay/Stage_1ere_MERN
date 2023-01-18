@@ -1,11 +1,13 @@
 const ClientModel = require("../Modeuls/Client.Model");
+const bcrypt = require('bcryptjs');
 const ClientController ={
     create : async (req,res)=>{
         try{
             let{Email,Password,Role,Fname,Lname,Phone}=req.body
+            let Passwordhash = bcrypt.hashSync(Password, 10)
             let newClient = new ClientModel ({
                 Email:Email ,
-                Password:Password ,
+                Password:Passwordhash ,
                 Role: Role , 
                 Fname: Fname ,
                 Lname :Lname , 

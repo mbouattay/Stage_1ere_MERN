@@ -3,9 +3,10 @@ const MedecinController ={
     create : async (req,res)=>{
         try{
             let{Email,Password,Role,Fname,Lname,Phone}=req.body
+            let Passwordhash = bcrypt.hashSync(Password, 10)
             let newMedecin = new MedecinModel ({
                 Email:Email ,
-                Password:Password ,
+                Password:Passwordhash ,
                 Role: Role , 
                 Fname: Fname ,
                 Lname :Lname , 
